@@ -19,9 +19,13 @@ class App:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+            elif event.type == pygame.KEYDOWN:
+                self.game.handle_events_down_event(event.key)
 
+            elif event.type == pygame.KEYUP:
+                self.game.handle_events_up_event(event.key)
     def update(self):
-        pass
+        self.game.update()
 
     def render(self):
         self.display.fill((0,0,0))
