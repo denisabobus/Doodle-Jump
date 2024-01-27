@@ -1,14 +1,14 @@
 import pygame
 import os
+from scripts.constants import display_size
 from scripts.game import Game
 from scripts.functions import load_image
 class App:
-    def __init__(self) :
-        self.display_size = (480, 720)
+    def __init__(self):
         self.running = True
         self.maxFPS = 60
 
-        self.display = pygame.display.set_mode(self.display_size)
+        self.display = pygame.display.set_mode(display_size)
         self.clock = pygame.time.Clock()
         self.game = Game()
 
@@ -20,10 +20,10 @@ class App:
             if event.type == pygame.QUIT:
                 self.running = False
             elif event.type == pygame.KEYDOWN:
-                self.game.handle_events_down_event(event.key)
+                self.game.handle_key_down_event(event.key)
 
             elif event.type == pygame.KEYUP:
-                self.game.handle_events_up_event(event.key)
+                self.game.handle_key_up_event(event.key)
     def update(self):
         self.game.update()
 
