@@ -1,6 +1,6 @@
 import pygame
 import os
-from scripts.constants import display_size
+from scripts.constants import display_size, CreatePlatformEvent
 from scripts.game import Game
 from scripts.functions import load_image
 class App:
@@ -21,9 +21,11 @@ class App:
                 self.running = False
             elif event.type == pygame.KEYDOWN:
                 self.game.handle_key_down_event(event.key)
-
             elif event.type == pygame.KEYUP:
                 self.game.handle_key_up_event(event.key)
+    
+            elif event.type == CreatePlatformEvent:
+                self.game.handle_create_platform_event(event.platform)
     def update(self):
         self.game.update()
 
@@ -31,6 +33,7 @@ class App:
         self.display.fill((0,0,0))
         self.game.render(self.display)
         pygame.display.update()
+        
 
     def run(self):
         while self.running:
